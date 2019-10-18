@@ -15,6 +15,18 @@ const StyledContainer = styled.div.attrs( props => ({
   display: flex;
   flex-direction: column;
   box-shadow: 0 0 8px rgba( 33, 33, 33, 0.3);
+
+  h3 {
+    margin-bottom: 0.5rem;
+  }
+`;
+
+const StyledCardContainer = styled.div.attrs( props => ({
+  className: 'card-container',
+}))`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
 `;
 
 const StyledForm = styled.div.attrs( props => ({
@@ -43,6 +55,21 @@ const StyledFields = styled.div.attrs( props => ({
 
   input, checkbox, button {
     margin: 0.4rem;
+  }
+`;
+
+const StyledUser = styled.div.attrs( props => ({
+  className: 'user-card',
+  }))`
+  display: flex;
+  flex-direction: column;
+  width: 10rem;
+  margin: 2rem;
+  padding: 0.4rem;
+  box-shadow: 0 0 8px rgba( 33, 33, 33, 0.8);
+
+  dl {
+    margin-top:  0;
   }
 `;
 
@@ -102,19 +129,21 @@ const NewUserForm = ({ values, touched, errors, status }) => {
       </StyledForm>
 
       <StyledContainer className='user-container'>
-        <h3>User List:</h3>
+      <h3>User List:</h3>
+      <StyledCardContainer className='card-container'>
       {
         users.map( user => (
-          <div className='user-card' key={user.id}>
+          <StyledUser className='user-card' key={user.id}>
             <h3>{ user.name }</h3>
 
             <dl>
               <dt>
                 { user.email  }</dt>
             </dl>
-          </div>
+          </StyledUser>
         ) )        
       }
+      </StyledCardContainer>
       </StyledContainer>
     </div>
   );
